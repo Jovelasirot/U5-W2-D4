@@ -13,8 +13,7 @@ import java.util.stream.Collectors;
 public class ExceptionsHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-
+    @ResponseStatus(HttpStatus.NOT_FOUND) // 404
     public ErrorsPayLoad handleNotFound(NotFoundException ex) {
         return new ErrorsPayLoad(ex.getMessage(), LocalDateTime.now());
     }
@@ -25,7 +24,7 @@ public class ExceptionsHandler {
         if(ex.getErrorsList() != null) {
             String message = ex.getErrorsList().stream()
                     .map(objectError -> objectError.getDefaultMessage())
-                    .collect(Collectors.joining(". " ));
+                    .collect(Collectors.joining(" | " ));
             return new ErrorResponseDTO(message, LocalDateTime.now());
 
         } else {
