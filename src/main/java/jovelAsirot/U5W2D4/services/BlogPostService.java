@@ -2,7 +2,7 @@ package jovelAsirot.U5W2D4.services;
 
 import jovelAsirot.U5W2D4.entities.BlogAuthor;
 import jovelAsirot.U5W2D4.entities.BlogPost;
-import jovelAsirot.U5W2D4.entities.BlogPostPayLoad;
+import jovelAsirot.U5W2D4.payloads.BlogPostPayLoad;
 import jovelAsirot.U5W2D4.enums.Category;
 import jovelAsirot.U5W2D4.exceptions.NotFoundException;
 import jovelAsirot.U5W2D4.repositories.BlogAuthorDAO;

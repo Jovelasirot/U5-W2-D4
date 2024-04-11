@@ -30,4 +30,11 @@ public class BlogAuthor {
 
     private String avatar;
 
+    public BlogAuthor(String name, String surname, String email, LocalDate birthDate, String avatar) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.avatar = avatar;
+    }
 }

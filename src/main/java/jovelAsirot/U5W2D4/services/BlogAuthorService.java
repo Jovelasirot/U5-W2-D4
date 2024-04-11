@@ -2,6 +2,7 @@ package jovelAsirot.U5W2D4.services;
 
 import jovelAsirot.U5W2D4.entities.BlogAuthor;
 import jovelAsirot.U5W2D4.exceptions.NotFoundException;
+import jovelAsirot.U5W2D4.payloads.BlogAuthorDTO;
 import jovelAsirot.U5W2D4.repositories.BlogAuthorDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,14 +25,9 @@ public class BlogAuthorService {
         return this.baDAO.findAll(pageable);
     }
 
-    public BlogAuthor save(BlogAuthor newAuthor) {
-        Random rdm = new Random();
-        LocalDate today = LocalDate.now();
-
-        newAuthor.setAvatar("https://ui-avatars.com/api/?name=" + newAuthor.getName() + "+" + newAuthor.getSurname());
-        newAuthor.setEmail(newAuthor.getName() + newAuthor.getSurname() + "gmail.com");
-        newAuthor.setBirthDate(today.minusYears(rdm.nextInt(11, 20)));
-        return this.baDAO.save(newAuthor);
+    public BlogAuthor save(BlogAuthorDTO payload) {
+        BlogAuthor newAuthor = new BlogAuthor(payload.name(),payload.surname(),payload.email(),payload.birthDate(),"https://ui-avatars.com/api/?name="+ payload.name() + "+" + payload.surname());
+        return baDAO.save(newAuthor);
     }
 
     public BlogAuthor findById(Long authorId) {

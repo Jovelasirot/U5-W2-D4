@@ -1,7 +1,7 @@
 package jovelAsirot.U5W2D4.controllers;
 
 import jovelAsirot.U5W2D4.entities.BlogPost;
-import jovelAsirot.U5W2D4.entities.BlogPostPayLoad;
+import jovelAsirot.U5W2D4.payloads.BlogPostPayLoad;
 import jovelAsirot.U5W2D4.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ public class BlogPostController {
     }
 
     @GetMapping
-    public Page<BlogPost> getAllBlogPost(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+    public Page<BlogPost> getAllBlogPosts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
         return this.blogPostService.getAll(page, size, sortBy);
     }
 

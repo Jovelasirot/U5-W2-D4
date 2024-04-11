@@ -1,6 +1,6 @@
-package jovelAsirot.U5W2D4.entities;
+package jovelAsirot.U5W2D4.payloads;
 
-import jovelAsirot.U5W2D3.enums.Category;
+import jovelAsirot.U5W2D4.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
