@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/blog/author")
@@ -25,6 +28,11 @@ public class BlogAuthorController {
             throw new BadRequestException(validation.getAllErrors());
         }
         return new BlogAuthorResponseDTO(this.blogAuthorService.save(payload).getId());
+    }
+
+    @PostMapping("/avatar/upload/{authorId}")
+    public String uploadAvatar(@PathVariable Long authorId, @RequestParam("avatar") MultipartFile image) throws IOException {
+        return this.blogAuthorService.uploadImage(authorId, image);
     }
 
     @GetMapping
