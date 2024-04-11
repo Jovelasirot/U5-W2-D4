@@ -26,11 +26,11 @@ public class BlogAuthor {
 
     private String email;
 
-    private LocalDate birthDate;
+    private String birthDate;
 
     private String avatar;
 
-    public BlogAuthor(String name, String surname, String email, LocalDate birthDate, String avatar) {
+    public BlogAuthor(String name, String surname, String email, String birthDate, String avatar) {
         this.name = name;
         this.surname = surname;
         this.email = email;

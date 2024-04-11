@@ -60,7 +60,7 @@ public class BlogAuthorService {
 
         authorFound.setName(updatedAuthor.getName());
         authorFound.setSurname(updatedAuthor.getSurname());
-        authorFound.setBirthDate(today.minusYears(rdm.nextInt(11, 20)));
+        authorFound.setBirthDate(updatedAuthor.getBirthDate());
         authorFound.setEmail(authorEmail);
         authorFound.setAvatar(authorAvatar);
 

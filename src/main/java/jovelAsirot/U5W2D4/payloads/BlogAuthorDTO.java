@@ -16,5 +16,5 @@ public record BlogAuthorDTO(@NotEmpty(message = "The name is required")
                             @Email(message = "The email given is invalid")
                             String email,
                             @NotEmpty(message = "The birth date is required")
-                            LocalDate birthDate) {
+                            String birthDate) {
 }
