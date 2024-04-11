@@ -1,5 +1,7 @@
 package jovelAsirot.U5W2D4.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import jovelAsirot.U5W2D4.entities.BlogAuthor;
 import jovelAsirot.U5W2D4.entities.BlogPost;
 import jovelAsirot.U5W2D4.payloads.BlogPostPayLoad;
@@ -13,7 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -27,6 +31,9 @@ public class BlogPostService {
 
     @Autowired
     private BlogAuthorService blogAuthorService;
+
+    @Autowired
+    private Cloudinary cloudinaryUploader;
 
     public Page<BlogPost> getAll(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
@@ -94,6 +101,14 @@ public class BlogPostService {
 
         newBlogPost.setAuthors(authors);
         return this.bpDAO.save(newBlogPost);
+    }
+
+    public String uploadImage(Long blogPostId, MultipartFile image) throws IOException {
+       BlogPost blogPost = findById(blogPostId);
+        String url = (String) cloudinaryUploader.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
+        blogPost.setCover(url);
+        bpDAO.save(blogPost);
+        return url;
     }
 
     public BlogPost findById(Long blogId) {
